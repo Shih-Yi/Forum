@@ -1,4 +1,4 @@
-<%= @event.name %>
-<%=simple_format @event.description %>
+<%= @event.name if @event %>
+<%=simple_format @event.description if @event%>
 
 <p><%= link_to "Back to index", events_path %></p>
