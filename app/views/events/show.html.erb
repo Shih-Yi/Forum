@@ -1,4 +1,6 @@
-<%= @event.name if @event %>
-<%=simple_format @event.description if @event%>
+<blockquote>
+  <p> <%= @event.name if @event %></p>
+</blockquote>
+<p><%=simple_format @event.description if @event%></p>
 
 <p><%= link_to "Back to index", events_path %></p>

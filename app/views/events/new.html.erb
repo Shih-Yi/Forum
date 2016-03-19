@@ -1,5 +1,5 @@
 <h2>New Post</h2>
 <%= form_for @event, url: events_path do |f|%>
-  <%= render :partial =>'form', :locals =>{:f=>f} %>
-  <%= f.submit "Create" %>
+  <p><%= render :partial =>'form', :locals =>{:f=>f} %></p>
+  <p><%= f.submit "Create" %></p>
 <% end %>

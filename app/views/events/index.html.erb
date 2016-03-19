@@ -1,5 +1,13 @@
 <h1>Forum</h1>
-<table>
+
+<table class="table table-hover">
+  <tr>
+    <td><h3>Post</h3></td>
+    <td><h3>Author</h3></td>
+    <td><h3>Created time</h3></td>
+    <td><h3>Function</h3></td>
+  </tr>
+
   <tr>
     <% @events.each do |event| %>
     </tr>
@@ -7,9 +15,18 @@
       <td>
         <%= event.name %>
       </td>
-      <td><%= link_to 'Show', event_path(event) %></td>
-      <td><%= link_to 'Edit',edit_event_path(event) %></td>
-      <td><%= link_to 'Delete', event_path(event), :method=> :delete, :data=>{:confirm => "Are u sure?"} %></td>
+      <td>
+        <%= event.user.try(:short_name) %>
+      </td>
+      <td>
+        <%= event.created_at  %>
+      </td>
+
+      <td>
+        <%= link_to 'Edit',edit_event_path(event) %>
+        <%= link_to 'Show', event_path(event) %>
+        <%= link_to 'Delete', event_path(event), :method=> :delete, :data=>{:confirm => "Are u sure?"} %>
+      </td>
     </tr>
   <% end %>
 </table>

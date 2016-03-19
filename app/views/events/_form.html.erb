@@ -8,9 +8,11 @@
     <% end %>
   </ul>
 <% end %>
-
+<p>
 <%= f.label:name, "Name" %>
 <%= f.text_field :name %>
-
-<%= f.label:description, "Context" %>
-<%= f.text_area :description %>
+</p>
+<div class="form-group">
+  <%= f.label:description, "Context" %>
+  <%= f.text_area :description %>
+</div>
