@@ -1,10 +1,5 @@
 <h2>New Post</h2>
 <%= form_for @event, url: events_path do |f|%>
-  <%= f.label:name, "Name" %>
-  <%= f.text_field :name %>
-
-  <%= f.label:description, "Context" %>
-  <%= f.text_area :description %>
-
+  <%= render :partial =>'form', :locals =>{:f=>f} %>
   <%= f.submit "Create" %>
 <% end %>

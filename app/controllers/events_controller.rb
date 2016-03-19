@@ -17,6 +17,7 @@ class EventsController < ApplicationController
 
   def show 
     @event = Event.find(params[:id])
+    @page_title = @event.name
   end
 
   def edit
@@ -30,7 +31,12 @@ class EventsController < ApplicationController
     redirect_to event_url(@event)
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
 
+    redirect_to events_url
+  end
   private
 
   def event_params
