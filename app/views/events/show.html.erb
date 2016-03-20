@@ -1,6 +1,19 @@
-<blockquote>
-  <p> <%= @event.name if @event %></p>
-</blockquote>
-<p><%=simple_format @event.description if @event%></p>
+<div class="panel panel-default">
+  <blockquote><h3>Title:</h3>
+    <div class="panel-heading"><%= @event.name %></div>
+    <div class="panel-body">
+      <p><%=simple_format @event.description %></p>
+    </div>
+  </blockquote>
+  <%= @event.comments.count %>Comments
+  <%#= render @event.comments %>
+
+  <div class="panel-footer">
+    <%= render :partial=> 'event_comments/comment' %>
+  </div>
+
+</div>
+<h4>Add a comment:</h4>
+<%= render "event_comments/form" %>
 
 <p><%= link_to "Back to index", events_path %></p>
