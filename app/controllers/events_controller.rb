@@ -5,8 +5,14 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
+
     @events = Event.page(params[:page]).per(5)
     # @events = Event.all
+
+    if params[:order]
+      sort_by = (params[:order] == 'name') ? 'name' : 'id'
+      @events = @events.order(sort_by)
+    end
   end
 
   def new
@@ -59,5 +65,7 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:name, :description, :category_id)
   end
+
+
 end
 
