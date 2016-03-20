@@ -32,3 +32,7 @@
 </table>
 
 <%= link_to 'New Event', new_event_path, :class=>"btn"%>
+
+<div>
+  <%= paginate @events %>
+</div>

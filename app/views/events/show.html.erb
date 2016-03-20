@@ -1,11 +1,15 @@
 <div class="panel panel-default">
-  <blockquote><h3>Title:</h3>
-    <div class="panel-heading"><%= @event.name %></div>
-    <div class="panel-body">
-      <p><%=simple_format @event.description %></p>
-    </div>
+  <blockquote>
+    <div>
+      Classification: <%= @event.category.try(:name) %>
+  </div>
+  <h3>Title:</h3>
+  <div class="panel-heading"><%= @event.name %></div>
+  <div class="panel-body">
+    <p><%=simple_format @event.description %></p>
+  </div>
   </blockquote>
-  <%= @event.comments.count %>Comments
+  <h4><%= @event.comments.count %>Comments</h4>
   <%#= render @event.comments %>
 
   <div class="panel-footer">

@@ -5,7 +5,8 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @events = Event.page(params[:page]).per(5)
+    # @events = Event.all
   end
 
   def new
@@ -56,7 +57,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description)
+    params.require(:event).permit(:name, :description, :category_id)
   end
 end
 

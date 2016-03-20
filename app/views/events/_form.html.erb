@@ -8,6 +8,9 @@
     <% end %>
   </ul>
 <% end %>
+<div>
+  <%= f.collection_select(:category_id, Category.all, :id, :name)  %>
+</div>
 <p>
 <%= f.label:name, "Name" %>
 <%= f.text_field :name %>
