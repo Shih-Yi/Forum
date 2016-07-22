@@ -1,0 +1,9 @@
+<h1>Group</h1>
+<p><%= link_to "Back to index", events_path %></p>
+
+
+<% @groups.each do |g| %>
+
+  <%= g.name %>
+
+<%end %>

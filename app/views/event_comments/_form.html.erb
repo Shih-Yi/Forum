@@ -1,14 +1,18 @@
 <%= form_for ([@event, @event.comments.build]) do |f| %>
+  <%#= form_for @event.comments.build, :url => event_comments_path(@event) do |f| %>
 
-  <div>
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :body, "Comment" %>
-    <%= f.text_field :body %>
-  </div>
 
-  <%= f.submit %>
 
-<%end %>
+
+    <div>
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name %>
+    </div>
+    <div>
+      <%= f.label :body, "Comment" %>
+      <%= f.text_field :body %>
+    </div>
+
+    <%= f.submit %>
+
+  <%end %>

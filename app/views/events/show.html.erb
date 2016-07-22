@@ -1,13 +1,20 @@
+
+<p><%= link_to "Back to index", events_path %></p>
 <div class="panel panel-default">
   <blockquote>
+    <h4>Group:
+      <% @event.groups.each do |g| %>
+        <%= g.name %>
+      <% end %>
+    </h4>
     <div>
-      Classification: <%= @event.category.try(:name) %>
-  </div>
-  <h3>Title:</h3>
-  <div class="panel-heading"><%= @event.name %></div>
-  <div class="panel-body">
-    <p><%=simple_format @event.description %></p>
-  </div>
+      <h4>Classification: <%= @event.category.try(:name) %></h4> 
+    </div>
+    <h3>Title:</h3>
+    <div class="panel-heading"><%= @event.name %></div>
+    <div class="panel-body">
+      <p><%=simple_format @event.description %></p>
+    </div>
   </blockquote>
   <h4><%= @event.comments.count %>Comments</h4>
   <%#= render @event.comments %>

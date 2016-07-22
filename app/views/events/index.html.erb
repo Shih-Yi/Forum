@@ -1,7 +1,20 @@
 <h1>Forum</h1>
 <%= link_to 'Sort by Name', events_path( :order => "name") %>
 <%= link_to 'Sort by Default', events_path %>
+
+<div id="placeholder-div"></div>
+<div id="showParticipants"></div>
+<div id="sqr1a"></div>
+
+
 <table class="table table-hover">
+  <tr>
+    <% @groups.each do |g| %>
+      <td>
+        <%= link_to g.name, events_path(:group_id => g, :page => params[:page]) %>
+      </td>
+    <% end %>
+  </tr>
   <tr>
     <td><h3>Post</h3></td>
     <td><h3>Author</h3></td>
@@ -14,7 +27,7 @@
     </tr>
     <tr>
       <td>
-        <%= event.name %>
+        <%= link_to event.name, event_path(event)%>
       </td>
       <td>
         <%= event.user.try(:short_name) %>
@@ -24,9 +37,15 @@
       </td>
 
       <td>
-        <%= link_to 'Edit',edit_event_path(event) %>
-        <%= link_to 'Show', event_path(event) %>
-        <%= link_to 'Delete', event_path(event), :method=> :delete, :data=>{:confirm => "Are u sure?"} %>
+        <% if current_user == event.user %>
+          <%= link_to 'Edit',edit_event_path(event) %>
+          <%= link_to 'Show', event_path(event) %>
+          <%= link_to 'Delete', event_path(event), :method=> :delete, :data=>{:confirm => "Are u sure?"} %>
+        <% end %>
+        <%= event.comments.count %>
+      </td>
+      <td>
+
       </td>
     </tr>
   <% end %>
@@ -37,3 +56,22 @@
 <div>
   <%= paginate @events %>
 </div>
+
+
+<script>
+
+function updateAppParticipants() {
+  gapi.hangout.render('placeholder-div', { 'render': 'createhangout' });
+    }
+
+gapi.hangout.onApiReady.add(function(e) {
+  updateAppParticipants();
+
+
+  });
+
+
+
+
+
+</script>

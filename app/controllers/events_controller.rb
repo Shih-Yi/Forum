@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-
+    @groups = Group.all
     @events = Event.page(params[:page]).per(5)
     # @events = Event.all
 
@@ -13,6 +13,13 @@ class EventsController < ApplicationController
       sort_by = (params[:order] == 'name') ? 'name' : 'id'
       @events = @events.order(sort_by)
     end
+
+    if params[:group_id]
+      @events = Group.find(params[:group_id]).events.page(params[:page]).per(5)
+    end
+
+
+
   end
 
   def new
@@ -33,7 +40,7 @@ class EventsController < ApplicationController
 
   end
 
-  def show 
+  def show
     @page_title=@event.name
   end
 
@@ -63,7 +70,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :category_id)
+    params.require(:event).permit(:name, :description, :category_id,:group_ids => [])
   end
 
 
